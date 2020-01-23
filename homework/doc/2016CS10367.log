@@ -1,0 +1,358 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.9)  13 JAN 2020 23:46
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**2016CS10367.tex
+(./2016CS10367.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texmf/tex/latex/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count87
+\float@exts=\toks15
+\float@box=\box26
+\@float@everytoks=\toks16
+\@floatcapt=\box27
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen105
+\extrarowheight=\dimen106
+\NC@list=\toks17
+\extratabsurround=\skip43
+\backup@length=\skip44
+) (./2016CS10367.aux)
+\openout1 = `2016CS10367.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count88
+\scratchdimen=\dimen107
+\scratchbox=\box28
+\nofMPsegments=\count89
+\nofMParguments=\count90
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count91
+\MPscratchDim=\dimen108
+\MPnumerator=\count92
+\makeMPintoPDFobject=\count93
+\everyMPtoPDFconversion=\toks19
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 19.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 19.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 19.
+<ER.jpeg, id=1, 1043.9pt x 590.205pt>
+File: ER.jpeg Graphic file (type jpg)
+<use ER.jpeg>
+Package pdftex.def Info: ER.jpeg  used on input line 25.
+(pdftex.def)             Requested size: 284.52756pt x 160.87045pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 35.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 35.
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+[]|\OT1/cmr/m/n/10 CompanyInvolved, Ex-piry-Date,PaymentMode,
+ []
+
+
+Overfull \hbox (81.37166pt too wide) in paragraph at lines 62--75
+ [] 
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./ER.jpeg>]
+Underfull \hbox (badness 8132) in paragraph at lines 90--90
+[]|\OT1/cmr/m/n/10 Weak en-tity
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
+[]|\OT1/cmr/m/n/10 Non-binary
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]|\OT1/cmr/m/n/10 Hierarchical
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+[]|\OT1/cmr/m/n/10 referential
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--107
+[]|\OT1/cmr/m/n/10 Universal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+[]|\OT1/cmr/m/n/10 Year,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 MovieN-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 ame, Cast,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 Lan-guage,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 For-mat ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 Ac-tor-Name,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 DoB,Twitter,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+\OT1/cmr/m/n/10 Threatre-
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 123--124
+[]|\OT1/cmr/m/n/10 Year, Name,
+ []
+
+
+Underfull \hbox (badness 7116) in paragraph at lines 123--124
+\OT1/cmr/m/n/10 Cast, Likes,
+ []
+
+
+Underfull \hbox (badness 4739) in paragraph at lines 123--124
+\OT1/cmr/m/n/10 Genre, Lan-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
+\OT1/cmr/m/n/10 guage, For-
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 133--134
+[]|\OT1/cmr/m/n/10 Year, Name,
+ []
+
+
+Underfull \hbox (badness 7116) in paragraph at lines 133--134
+\OT1/cmr/m/n/10 Cast, Likes,
+ []
+
+
+Underfull \hbox (badness 4739) in paragraph at lines 133--134
+\OT1/cmr/m/n/10 Genre, Lan-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+\OT1/cmr/m/n/10 guage, For-
+ []
+
+
+Underfull \hbox (badness 6978) in paragraph at lines 133--134
+\OT1/cmr/m/n/10 mat, Ac-tor-
+ []
+
+
+Underfull \hbox (badness 2521) in paragraph at lines 133--134
+\OT1/cmr/m/n/10 Name, DoB,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+\OT1/cmr/m/n/10 Twit-ter-Ac-
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 143--144
+[]|\OT1/cmr/m/n/10 Year, Name,
+ []
+
+
+Underfull \hbox (badness 7116) in paragraph at lines 143--144
+\OT1/cmr/m/n/10 Cast, Likes,
+ []
+
+
+Underfull \hbox (badness 4739) in paragraph at lines 143--144
+\OT1/cmr/m/n/10 Genre, Lan-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
+\OT1/cmr/m/n/10 guage, For-
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
+[]|\OT1/cmr/m/n/10 ActorName,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
+\OT1/cmr/m/n/10 DoB, Twit-
+ []
+
+
+Overfull \hbox (8.38892pt too wide) in paragraph at lines 163--164
+[]|\OT1/cmr/m/n/10 THreatreName,
+ []
+
+
+Overfull \hbox (70.13571pt too wide) in paragraph at lines 183--188
+\OT1/cmr/m/n/10 var-char,c14 var-char,c15 var-char,c16 var-char); COPY hw1[]tab
+le FROM '/home/ansh/8thSem/COL362/homework/games.csv'
+ []
+
+[3] (./2016CS10367.aux) ) 
+Here is how much of TeX's memory you used:
+ 1552 strings out of 492982
+ 21974 string characters out of 6134897
+ 85498 words of memory out of 5000000
+ 5119 multiletter control sequences out of 15000+600000
+ 7895 words of font info for 28 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,10n,25p,278b,218s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on 2016CS10367.pdf (3 pages, 123430 bytes).
+PDF statistics:
+ 35 PDF objects out of 1000 (max. 8388607)
+ 23 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+

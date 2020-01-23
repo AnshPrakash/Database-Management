@@ -1,0 +1,6 @@
+sudo -u postgres psql
+create database dbhw1;
+\c dbhw1;
+ create table hw1_table (c1 varchar,c2 varchar,c3 varchar,c4 varchar,c5 varchar,c6 varchar,c7 varchar,c8 varchar,c9 varchar,c10 varchar,c11 varchar,c12 varchar,c13 varchar,c14 varchar,c15 varchar,c16 varchar);
+COPY hw1_table FROM '/home/ansh/8thSem/COL362/homework/games.csv' WITH (FORMAT csv);
+
