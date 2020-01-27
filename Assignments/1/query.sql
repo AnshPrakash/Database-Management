@@ -196,26 +196,39 @@ GROUP BY posts.id
 ORDER BY effectiveupvotes DESC
 LIMIT 1
 ;
+-- ___________________________________
+
+--20--
+SELECT  filteredUser.userid,ABS(filteredUser.profileViews - Posts.viewcount) AS viewdiff from Posts
+INNER JOIN 
+(
+  SELECT bar.userid,bar.displayname,bar.profileViews FROM badges 
+  INNER JOIN
+  (
+    SELECT foo.userid,foo.displayname,foo.profileViews FROM Posts 
+    INNER JOIN
+    (
+      SELECT users.id AS userid,users.displayname,max(users.Views) AS profileViews  FROM Posts 
+      INNER JOIN users
+      ON users.id = Posts.OwneruserID
+      WHERE Posts.PostTypeId = 1 OR Posts.PostTypeId = 2
+      GROUP BY users.id,users.displayname
+      HAVING max(viewcount) > max(users.Views)
+    )
+    AS foo
+    ON foo.userid = Posts.OwneruserID
+  ) AS bar
+  ON bar.userid = badges.UserId
+  GROUP BY bar.userid,bar.displayname,bar.profileViews
+  HAVING COUNT(*) >= 100
+) AS filteredUser
+ON filteredUser.userid = Posts.OwneruserID
+WHERE Posts.PostTypeId = 1 OR Posts.PostTypeId = 2
+ORDER BY viewdiff DESC , filteredUser.displayname ASC
+;
 
 
--- --20--
--- SELECT  userid AS  FROM Posts 
--- INNER JOIN users
--- ON users.id = Posts.OwneruserID
--- WHERE Posts.PostTypeId = 1 OR Posts.PostTypeId = 2
--- GROUP BY users.id  
-
-
--- (
---   SELECT COUNT(*),userid AS badgeCount FROM badges 
---   INNER JOIN users 
---   ON users.id = badges.userid
---   GROUP BY users.id 
---   HAVING badgeCount >= 100
--- ) AS foo
--- ON foo.userid = Posts.OwneruserID
--- WHERE Posts.PostTypeId = 1 OR Posts.PostTypeId = 2
--- GROUP BY foo.userid =
+--21--
 
 
 
