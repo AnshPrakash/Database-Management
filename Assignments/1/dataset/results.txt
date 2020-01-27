@@ -1,0 +1,102 @@
+--1--
+       name       | number 
+------------------+--------
+ Student          | 134135
+ Scholar          | 106361
+ Teacher          | 101241
+ Editor           |  96918
+ Popular Question |  92927
+ Supporter        |  87209
+ Nice Answer      |  75667
+ Commentator      |  48619
+ Tumbleweed       |  39991
+ Yearling         |  36176
+ Autobiographer   |  33499
+ Critic           |  33256
+ Notable Question |  30300
+ Nice Question    |  20750
+ Enlightened      |  16518
+ Organizer        |  15055
+ Good Answer      |  12554
+ Enthusiast       |  10615
+
+--2--
+ userid |  displayname  
+--------+---------------
+  22656 | Jon Skeet
+ 187606 | Pekka 웃
+  10661 | S.Lott
+  76337 | John Saunders
+  13249 | Nick Craver
+
+--3--
+ userid  | month 
+---------+-------
+ 2922388 |     1
+ 3644960 |     2
+ 2398110 |     3
+ 2624511 |     4
+ 2244940 |     5
+ 2685956 |     6
+ 2730306 |     7
+ 9597421 |     8
+ 2557997 |     9
+ 5760280 |    10
+ 4790871 |    11
+ 2524814 |    12
+
+ --4--
+
+
+ --10--
+ Wrong why are all 0  and how to get the whole row corresponding to max element
+ max 
+-----
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+   0
+(30 rows)
+
+--12--
+      tags       | number 
+-----------------+--------
+ <android>       |     93
+ <iphone>        |     37
+ <asp.net>       |     17
+ <c#>            |     15
+ <javascript>    |     10
+ <jquery>        |     10
+ <nhibernate>    |      9
+ <ruby-on-rails> |      8
+ <c#><wpf>       |      7
+ <git>           |      7
+(10 rows)
+
+
