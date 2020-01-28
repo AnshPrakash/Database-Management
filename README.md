@@ -15,7 +15,7 @@ sudo -u postgres psql
 or   
 su postgres # enter postgres password  
 psql  
-\\l #tell the databases in postgres server  
+\l #tell the databases in postgres server  
 \du #list users in postgres  
   
 #change password for user postgres  
