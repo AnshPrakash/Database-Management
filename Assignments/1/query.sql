@@ -20,16 +20,14 @@ ON foo.userid = users.id ORDER BY foo.comments_count DESC,users.displayname ASC;
 
 
 --3--
-SELECT MAX(foo.userid) AS userid,foo.month FROM
-( 
-  SELECT userid,EXTRACT(MONTH FROM date) AS month 
-  FROM badges 
-  WHERE date BETWEEN '2010-01-01' AND '2010-12-31'
-) AS foo
-GROUP BY foo.month
-ORDER BY foo.month ASC
+SELECT DISTINCT ON(EXTRACT(MONTH FROM badges.date)) EXTRACT(MONTH FROM badges.date) AS MONTH,users.id AS userid FROM badges
+INNER JOIN users 
+ON badges.userid = users.id
+WHERE badges.date BETWEEN '2010-01-01' AND '2010-12-31'
+GROUP BY EXTRACT(MONTH FROM badges.date),users.id,users.displayname
+ORDER BY EXTRACT(MONTH FROM badges.date) ASC,COUNT(*) DESC,users.displayname ASC
 ;
--- Time: 768.698 ms
+
 
 
 --4--
@@ -77,25 +75,37 @@ ORDER BY sum(Votes.BountyAmount) DESC,users.displayname ASC LIMIT 3;
 
 
 --9--
---WRONG
-SELECT LastEditorDisplayName AS displayname, COUNT(*) FROM badges 
-INNER JOIN Posts
-ON Posts.LastEditorUserId = badges.userid
-WHERE LastEditorDisplayName IS NOT NULL
-GROUP BY Posts.LastEditorUserId,Posts.LastEditorDisplayName
-ORDER BY COUNT(*) DESC,Posts.LastEditorDisplayName ASC 
+
+SELECT foo.displayname,COUNT(*) FROM Posts 
+INNER JOIN 
+( 
+  SELECT users.id,users.displayname, COUNT(*) AS count FROM badges 
+  INNER JOIN users
+  ON users.id = badges.userid
+  GROUP BY users.id,users.displayname
+  HAVING COUNT(*) >= 10
+) AS foo
+ON foo.id = Posts.LastEditorUserId
+GROUP BY foo.id,foo.displayname
+ORDER BY COUNT(*) DESC,foo.displayname ASC
 LIMIT 5
 ;
 
 
 
+
 --10--
---WRONG
-SELECT DISTINCT ON (EXTRACT(YEAR FROM CreationDate),EXTRACT(MONTH FROM CreationDate)) 
-EXTRACT(YEAR FROM CreationDate),EXTRACT(MONTH FROM CreationDate),OwneruserID
-FROM posts
-GROUP BY OwnerUserId,EXTRACT(YEAR FROM CreationDate),EXTRACT(MONTH FROM CreationDate)
-ORDER BY EXTRACT(YEAR FROM CreationDate) ASC,EXTRACT(MONTH FROM CreationDate) ASC,ABS(COUNT(case when PostTypeId=1 then 1 else null end ) - COUNT(case when PostTypeId=2 then 1 else null end)) DESC
+
+SELECT DISTINCT ON (foo.year,foo.month)
+foo.year,foo.month,OwneruserID FROM users
+INNER JOIN 
+(
+  SELECT EXTRACT(YEAR FROM CreationDate) AS YEAR,EXTRACT(MONTH FROM CreationDate) AS month,OwneruserID,ABS(COUNT(case when PostTypeId=1 then 1 else null end ) - COUNT(case when PostTypeId=2 then 1 else null end)) AS count 
+  FROM posts
+  GROUP BY OwnerUserId,EXTRACT(YEAR FROM CreationDate),EXTRACT(MONTH FROM CreationDate)
+) AS foo
+ON foo.OwneruserID = users.id
+ORDER BY foo.year ASC,foo.MONTH ASC,foo.count DESC,users.displayname ASC
 ;
 
 
@@ -143,7 +153,6 @@ LIMIT 1
 -- Time: 299.207 ms
 
 --16--
---wrong
 SELECT foo.postid AS postid,(1.0*foo.totvotes)/posts.viewcount AS ratio  FROM
 (
   SELECT postid,count(*) AS totvotes FROM Votes 
