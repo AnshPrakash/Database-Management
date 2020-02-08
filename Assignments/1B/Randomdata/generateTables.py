@@ -11,7 +11,6 @@ seed(1)
 
 
 
-
 places = ["Ylöjärvi", "Ylivieska", "Virrat", "Viitasaari", "Varkaus", "Vantaa", "Valkeakoski", "Vaasa", "Uusikaupunki", "Uusikaarlepyy", "Ulvila", "Turku", "Tornio", "Tampere", "Suonenjoki", "Somero", "Seinäjoki", "Savonlinna", "Sastamala", "Salo", "Saarijärvi", "Rovaniemi", "Riihimäki", "Rauma", "Raisio", "Raasepori", "Raahe", "Pyhäjärvi", "Pudasjärvi", "Porvoo", "Pori", "Pietarsaari", "Pieksämäki", "Parkano", "Parainen", "Paimio", "Outokumpu", "Oulu", "Oulainen", "Orivesi", "Orimattila", "Nurmes", "Nokia", "Nivala", "Närpiö", "Naantali", "Mikkeli", "Mänttä", "Maarianhamina", "Loviisa", "Loimaa", "Lohja", "Lieksa", "Lapua", "Lappeenranta", "Laitila", "Lahti", "Kuusamo", "Kurikka", "Kuopio", "Kuhmo", "Kristiinankaupunki", "Kouvola", "Kotka", "Kokkola", "Kokemäki", "Kiuruvesi", "Kitee", "Keuruu", "Kerava", "Kemijärvi", "Kemi", "Kauniainen", "Kauhava", "Kauhajoki", "Kaskinen", "Karkkila", "Kannus", "Kankaanpää", "Kangasala", "Kalajoki", "Kajaani", "Kaarina", "Jyväskylä", "Joensuu", "Järvenpää", "Jämsä ", "Imatra", "Ikaalinen ", "Iisalmi ", "Hyvinkää", "Huittinen ", "Helsinki ", "Heinola ", "Harjavalta", "Hanko ", "Hamina ", "Hämeenlinna ", "Haapavesi", "Haapajärvi ", "Forssa ", "Espoo ", "Alavus ", "Alajärvi ", "Akaa ", "Ähtäri ", "Äänekoski "]
 def getPlace():
   global places
