@@ -101,6 +101,38 @@ SELECT COUNT(*) FROM
 ) AS sendrequest
 ;
 
+--6--
+WITH
+foo AS
+(
+  SELECT u1,array_agg(u2) AS arr FROM components
+  GROUP BY u1
+) ,
+bar AS
+( 
+  SELECT u1, array_agg(u2) AS arr FROM undirectedblock
+  GROUP BY u1
+),
+avail AS
+(
+  SELECT ud1.userid AS u1,array_agg(ud2.userid) AS arr,ud1.place FROM userdetails AS ud1
+  INNER JOIN userdetails AS ud2
+  ON ud1.place = ud2.place
+  GROUP BY u1,ud1.place
+)
+SELECT avail.u1 AS userid 
+FROM avail FULL OUTER JOIN
+(
+  SELECT foo.u1,array( (SELECT unnest(foo.arr)) UNION (SELECT unnest(bar.arr)) ) AS arr 
+  from foo FULL OUTER JOIN bar ON foo.u1= bar.u1
+) AS boo
+ON boo.u1 = avail.u1
+ORDER BY  cardinality(array( (SELECT unnest(avail.arr)) EXCEPT (SELECT unnest(boo.arr)) )) DESC, avail.u1 ASC
+LIMIT 10
+;
+
+--7--
+
 
 
 
