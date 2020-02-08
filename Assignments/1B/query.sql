@@ -133,9 +133,32 @@ LIMIT 10
 
 --7--
 
+SELECT u1 AS userid from 
+(
+  WITH RECURSIVE
+    friendzone(u1,u2,length) AS
+      (  
+        SELECT connected.u1,connected.u2,connected.length FROM connected
+        UNION
+        (
+          SELECT friendzone.u1,connected.u2,friendzone.length +1 FROM friendzone,connected
+          WHERE friendzone.u2 = connected.u1 AND friendzone.length +1 <= (SELECT COUNT(*) FROM friendlist) 
+        )
+      )
+    SELECT u1,u2,min(length) As length FROM  friendzone
+    group by u1,u2
+    HAVING min(length) = 3
+) AS foo
+GROUP BY foo.u1
+ORDER BY COUNT(*) DESC,foo.u1 ASC
+;
+
+--8--
 
 
+--9--
 
+--10--
 
 
 
