@@ -176,58 +176,57 @@ ORDER BY COUNT(*) DESC,foo.u1 ASC
 ;
 
 --8--
---include  return -1  case
-
-SELECT COUNT(*) AS COUNT FROM
+SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM 
 (
-  WITH RECURSIVE
-    Allpath(u1,u2,paths) AS
-    (
-      SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
-      FROM connected WHERE connected.u1 = 2 AND connected.u1 <> connected.u2
-      UNION
+  SELECT COUNT(*) AS COUNT FROM
+  (
+    WITH RECURSIVE
+      Allpath(u1,u2,paths) AS
       (
-        SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
-        WHERE (
-          Allpath.u2 = connected.u1
-          AND
-          connected.u2 <> ALL (Allpath.paths)
-          AND 
-          array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
-      )
+        SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
+        FROM connected WHERE connected.u1 = 2 AND connected.u1 <> connected.u2
+        UNION
+        (
+          SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
+          WHERE (
+            Allpath.u2 = connected.u1
+            AND
+            connected.u2 <> ALL (Allpath.paths)
+            AND 
+            array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
+        )
 
-    )
-  SELECT * FROM Allpath WHERE u2 = 1
-) AS p1
-INNER JOIN
-(
-  WITH RECURSIVE
-    Allpath(u1,u2,paths) AS
-    (
-      SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
-      FROM connected WHERE connected.u1 = 1 AND connected.u1 <> connected.u2
-      UNION
+      )
+    SELECT * FROM Allpath WHERE u2 = 1
+  ) AS p1
+  INNER JOIN
+  (
+    WITH RECURSIVE
+      Allpath(u1,u2,paths) AS
       (
-        SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
-        WHERE (
-          Allpath.u2 = connected.u1
-          AND
-          connected.u2 <> ALL (Allpath.paths)
-          AND 
-          array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
-      )
+        SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
+        FROM connected WHERE connected.u1 = 1 AND connected.u1 <> connected.u2
+        UNION
+        (
+          SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
+          WHERE (
+            Allpath.u2 = connected.u1
+            AND
+            connected.u2 <> ALL (Allpath.paths)
+            AND 
+            array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
+        )
 
-    )
-  SELECT * FROM Allpath WHERE u2 = 5
-) AS p2
-ON p1.u2 = p2.u1
-WHERE array_length(array((SELECT unnest(p1.paths)) INTERSECT (SELECT unnest(p2.paths)))  ,1) = 1
+      )
+    SELECT * FROM Allpath WHERE u2 = 5
+  ) AS p2
+  ON p1.u2 = p2.u1
+  WHERE array_length(array((SELECT unnest(p1.paths)) INTERSECT (SELECT unnest(p2.paths)))  ,1) = 1
+  ) AS foo
 ;
 
 
 --9--
--- return -1 case
-
 WITH RECURSIVE
   Allpath(u1,u2,paths) AS
   (
@@ -247,11 +246,11 @@ WITH RECURSIVE
     )
 
   )
-SELECT COUNT(*) FROM Allpath WHERE u2 = 5
+SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM 
+(SELECT COUNT(*) FROM Allpath WHERE u2 = 5) AS foo
 ;
 
 --10--
-
 
 
 
