@@ -100,6 +100,7 @@ AS COUNT;
 
 
 --5--
+--change u1
 SELECT COUNT(*) FROM
 (
   (
@@ -175,25 +176,74 @@ ORDER BY COUNT(*) DESC,foo.u1 ASC
 ;
 
 --8--
---9--
--- I need Simple paths this doesn't give simple paths
+
+SELECT COUNT(*) AS COUNT FROM
 (
   WITH RECURSIVE
-    friendzone(u1,u2,length) AS
-      (  
-        SELECT connected.u1,connected.u2,connected.length FROM connected
-        UNION
-        (
-          SELECT friendzone.u1,connected.u2,friendzone.length +1 FROM friendzone,connected
-          WHERE friendzone.u2 = connected.u1 AND friendzone.length +1 <= (SELECT COUNT(*) FROM friendlist)
-        )
+    Allpath(u1,u2,paths) AS
+    (
+      SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
+      FROM connected WHERE connected.u1 = 2 AND connected.u1 <> connected.u2
+      UNION
+      (
+        SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
+        WHERE (
+          Allpath.u2 = connected.u1
+          AND
+          connected.u2 <> ALL (Allpath.paths)
+          AND 
+          array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
       )
-    SELECT u1,u2,length FROM  friendzone
-    WHERE u1 = 2 AND u2 = 5
-    -- GROUP BY u1,u2
-)
+
+    )
+  SELECT * FROM Allpath WHERE u2 = 1
+) AS p1
+INNER JOIN
+(
+  WITH RECURSIVE
+    Allpath(u1,u2,paths) AS
+    (
+      SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
+      FROM connected WHERE connected.u1 = 1 AND connected.u1 <> connected.u2
+      UNION
+      (
+        SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
+        WHERE (
+          Allpath.u2 = connected.u1
+          AND
+          connected.u2 <> ALL (Allpath.paths)
+          AND 
+          array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
+      )
+
+    )
+  SELECT * FROM Allpath WHERE u2 = 5
+) AS p2
+ON p1.u2 = p2.u1
+WHERE array_length(array((SELECT unnest(p1.paths)) INTERSECT (SELECT unnest(p2.paths)))  ,1) = 1
 ;
 
+
+--9--
+
+WITH RECURSIVE
+  Allpath(u1,u2,paths) AS
+  (
+    SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
+    FROM connected WHERE connected.u1 = 1 AND connected.u1 <> connected.u2
+    UNION
+    (
+      SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
+      WHERE (
+        Allpath.u2 = connected.u1
+        AND
+        connected.u2 <> ALL (Allpath.paths)
+        AND 
+        array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
+    )
+
+  )
+SELECT * FROM Allpath WHERE u2 = 5;
 
 --10--
 
@@ -203,5 +253,7 @@ ORDER BY COUNT(*) DESC,foo.u1 ASC
 
 --CLEANUP--
 DROP VIEW connected;
-DROP VIEW components
+DROP VIEW components;
+DROP VIEW undirectedblock;
+
 
