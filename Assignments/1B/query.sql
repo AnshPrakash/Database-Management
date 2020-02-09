@@ -55,8 +55,29 @@ ORDER BY array_length(array_agg(DISTINCT u1),1) ASC
 ;
 
 --3--
+WITH
+boo AS
+(
+  SELECT array_agg(bar.u1) AS arr,cardinality(array( (SELECT unnest(foo.arr)) INTERSECT (SELECT unnest(bar.arr)) )) AS count
+  FROM
+  (
+    SELECT u1,array_agg(u2) AS arr FROM undirectedblock
+    GROUP BY u1
+  ) AS foo
+  FULL OUTER JOIN 
+  (
+    SELECT u1,array_agg(u2) AS arr FROM components
+    GROUP BY u1
+  ) AS bar
+  ON foo.u1 = bar.u1
+  GROUP BY count
+  ORDER BY count DESC
+  LIMIT 1
+)
 
-
+SELECT hoo AS userid,boo.count FROM boo CROSS JOIN UNNEST(boo.arr) AS hoo 
+ORDER BY userid
+;
 
 --4--
 --change u1 and u2
@@ -154,9 +175,25 @@ ORDER BY COUNT(*) DESC,foo.u1 ASC
 ;
 
 --8--
-
-
 --9--
+-- I need Simple paths this doesn't give simple paths
+(
+  WITH RECURSIVE
+    friendzone(u1,u2,length) AS
+      (  
+        SELECT connected.u1,connected.u2,connected.length FROM connected
+        UNION
+        (
+          SELECT friendzone.u1,connected.u2,friendzone.length +1 FROM friendzone,connected
+          WHERE friendzone.u2 = connected.u1 AND friendzone.length +1 <= (SELECT COUNT(*) FROM friendlist)
+        )
+      )
+    SELECT u1,u2,length FROM  friendzone
+    WHERE u1 = 2 AND u2 = 5
+    -- GROUP BY u1,u2
+)
+;
+
 
 --10--
 
