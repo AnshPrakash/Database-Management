@@ -252,6 +252,33 @@ SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM
 
 --10--
 
+WITH RECURSIVE
+  userblocks AS
+  (
+    SELECT u1,array_agg(u2) AS arr FROM undirectedblock 
+    GROUP BY u1
+  ),
+  Allpath(u1,u2,paths) AS
+  (
+    SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
+    FROM connected
+    WHERE connected.u1 = 2 
+          AND connected.u1 <> connected.u2
+          AND NOT (connected.u2 = ANY (array(SELECT userblocks.arr FROM userblocks WHERE u1 = connected.u1) ))
+    UNION
+    (
+      SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
+      WHERE (
+        Allpath.u2 = connected.u1
+        AND connected.u2 <> ALL (Allpath.paths)
+        AND NOT (connected.u2 = ANY (array(SELECT userblocks.arr FROM userblocks WHERE u1 = ANY(Allpath.paths) ) ))
+        AND array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
+    )
+  )
+
+SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM 
+(SELECT COUNT(*) FROM Allpath WHERE u2 = 5) AS foo
+;
 
 
 
