@@ -1,5 +1,6 @@
 
 
+--PREAMBLE--
 CREATE VIEW connected AS 
 (
   SELECT userid1 AS u1, userid2 AS u2,least(userid2,userid1) AS lowlink, 1 AS length FROM friendlist
@@ -36,7 +37,6 @@ CREATE VIEW components AS
 ;
 
 
---PREAMBLE--
 
 --1--
 SELECT count(*) FROM
@@ -80,7 +80,6 @@ ORDER BY userid
 ;
 
 --4--
---change u1 and u2
 SELECT COALESCE( (WITH RECURSIVE
   friendzone(u1,u2,length) AS
     (  
@@ -92,7 +91,7 @@ SELECT COALESCE( (WITH RECURSIVE
       )
     )
   SELECT min(length) FROM  friendzone
-  WHERE u1 = 2 AND u2 = 5
+  WHERE u1 = 1558 AND u2 = 2826
   GROUP BY u1,u2
   ), -1)
 AS COUNT;
@@ -100,24 +99,23 @@ AS COUNT;
 
 
 --5--
---change u1
 SELECT COUNT(*) FROM
 (
   (
     SELECT unnest(array_agg(DISTINCT u1)) AS component from components
     GROUP BY lowlink
-    HAVING 8 = ANY (array_agg(DISTINCT u1))
+    HAVING 704 = ANY (array_agg(DISTINCT u1))
   )
   EXCEPT
   (
     (
       SELECT u2 FROM connected
-      WHERE u1 = 8
+      WHERE u1 = 704
     )
       UNION
     (
       SELECT u2 FROM undirectedblock
-      WHERE u1 = 8
+      WHERE u1 = 704
     )
   )
 ) AS sendrequest
@@ -184,7 +182,7 @@ SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM
       Allpath(u1,u2,paths) AS
       (
         SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
-        FROM connected WHERE connected.u1 = 2 AND connected.u1 <> connected.u2
+        FROM connected WHERE connected.u1 = 3552 AND connected.u1 <> connected.u2
         UNION
         (
           SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
@@ -197,7 +195,7 @@ SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM
         )
 
       )
-    SELECT * FROM Allpath WHERE u2 = 1
+    SELECT * FROM Allpath WHERE u2 = 321
   ) AS p1
   INNER JOIN
   (
@@ -205,7 +203,7 @@ SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM
       Allpath(u1,u2,paths) AS
       (
         SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
-        FROM connected WHERE connected.u1 = 1 AND connected.u1 <> connected.u2
+        FROM connected WHERE connected.u1 = 321 AND connected.u1 <> connected.u2
         UNION
         (
           SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
@@ -218,7 +216,7 @@ SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM
         )
 
       )
-    SELECT * FROM Allpath WHERE u2 = 5
+    SELECT * FROM Allpath WHERE u2 = 1436
   ) AS p2
   ON p1.u2 = p2.u1
   WHERE array_length(array((SELECT unnest(p1.paths)) INTERSECT (SELECT unnest(p2.paths)))  ,1) = 1
@@ -232,7 +230,7 @@ WITH RECURSIVE
   (
     SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
     FROM connected,userdetails 
-    WHERE connected.u1 = 2 
+    WHERE connected.u1 = 3552 
           AND connected.u1 <> connected.u2
           AND (SELECT place FROM userdetails WHERE userid = connected.u1) <> (SELECT place FROM userdetails WHERE userid = connected.u2)
     UNION
@@ -247,7 +245,7 @@ WITH RECURSIVE
 
   )
 SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM 
-(SELECT COUNT(*) FROM Allpath WHERE u2 = 5) AS foo
+(SELECT COUNT(*) FROM Allpath WHERE u2 = 321) AS foo
 ;
 
 --10--
@@ -262,7 +260,7 @@ WITH RECURSIVE
   (
     SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
     FROM connected
-    WHERE connected.u1 = 2 
+    WHERE connected.u1 = 3552 
           AND connected.u1 <> connected.u2
           AND NOT (connected.u2 = ANY (array(SELECT userblocks.arr FROM userblocks WHERE u1 = connected.u1) ))
     UNION
@@ -277,15 +275,14 @@ WITH RECURSIVE
   )
 
 SELECT CASE WHEN count = 0 THEN count - 1 ELSE count END FROM 
-(SELECT COUNT(*) FROM Allpath WHERE u2 = 5) AS foo
+(SELECT COUNT(*) FROM Allpath WHERE u2 = 321) AS foo
 ;
 
 
 
-
 --CLEANUP--
-DROP VIEW connected;
 DROP VIEW components;
+DROP VIEW connected;
 DROP VIEW undirectedblock;
 
 
