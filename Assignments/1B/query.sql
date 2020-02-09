@@ -176,6 +176,7 @@ ORDER BY COUNT(*) DESC,foo.u1 ASC
 ;
 
 --8--
+--include  return -1  case
 
 SELECT COUNT(*) AS COUNT FROM
 (
@@ -225,27 +226,32 @@ WHERE array_length(array((SELECT unnest(p1.paths)) INTERSECT (SELECT unnest(p2.p
 
 
 --9--
+-- return -1 case
 
 WITH RECURSIVE
   Allpath(u1,u2,paths) AS
   (
     SELECT connected.u1 AS u1,connected.u2 AS u2, array[connected.u1,connected.u2] AS paths 
-    FROM connected WHERE connected.u1 = 1 AND connected.u1 <> connected.u2
+    FROM connected,userdetails 
+    WHERE connected.u1 = 2 
+          AND connected.u1 <> connected.u2
+          AND (SELECT place FROM userdetails WHERE userid = connected.u1) <> (SELECT place FROM userdetails WHERE userid = connected.u2)
     UNION
     (
       SELECT Allpath.u1,connected.u2,Allpath.paths||connected.u2 AS paths  FROM Allpath,connected
       WHERE (
         Allpath.u2 = connected.u1
-        AND
-        connected.u2 <> ALL (Allpath.paths)
-        AND 
-        array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
+        AND connected.u2 <> ALL (Allpath.paths)
+        AND (SELECT place FROM userdetails WHERE userid = connected.u1) <> (SELECT place FROM userdetails WHERE userid = connected.u2) 
+        AND array_length(Allpath.paths,1) + 1 <= (SELECT COUNT(*) FROM friendlist))
     )
 
   )
-SELECT * FROM Allpath WHERE u2 = 5;
+SELECT COUNT(*) FROM Allpath WHERE u2 = 5
+;
 
 --10--
+
 
 
 
