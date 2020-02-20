@@ -1,0 +1,9 @@
+{% extends "home_layout.html" %}
+{% block content %}
+    <!error>
+    <p>{{const_name}}</p>
+    {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+    {% endfor %}
+{% endblock content %}

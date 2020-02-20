@@ -1,0 +1,13 @@
+{% extends "home_layout.html" %}
+{% block content %}
+    <div class="dropdown">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              Select Constituency
+          </button>
+          <div class="dropdown-menu">
+              {% for const in consts %}
+                <a class="dropdown-item" href="/const/{{st_name}}/{{const[0]}}"> {{ const[0] }} </a>
+              {% endfor %}
+          </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+{% block graph %}
+    <div class="col-md-8">
+      <!--img src= "{{img_src}}"  alt="Party-wise Distribution" style="width:500px;height:600px;"-->
+      <img src="{{ url_for('send_file', filename=img_src) }}" alt="Party-wise Distribution">
+    </div>
+  </div>
+  <!--p>Click below to view expanded results</p-->
+  
+  <div class="panel panel-primary accordion"> <!-- Panel (collapasable) -->
+    <div class="panel-heading"> <!-- Panel head -->
+        <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion" href="#collapseOne">
+            Click to view/hide detailed results
+        </a>           
+    </div> <!-- END Panel head -->
+
+    <div id="collapseOne" class="panel-collapse collapse"> <!-- Collapsable section -->
+      <div class="panel-body"> <!-- Panel body -->
+        <h1 style="color:Teal; font-size: 150%";>Detailed Results</h1>
+        {{data | safe}}
+      </div> <!-- END Panel body -->
+    </div> <!-- END Collapse section -->
+
+    </div> 
+
+
+{% endblock graph %}

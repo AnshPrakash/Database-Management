@@ -1,0 +1,48 @@
+{% extends "home_layout.html" %}
+{% block filters %}
+    
+  <div class="row">
+    <div class="col-md-4">
+      <div class="sidebar-nav">
+          <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="icon-bar"></span>  
+              <span class="icon-bar"></span>  
+              <span class="icon-bar"></span>
+              </button>
+              <span class="visible-xs navbar-brand">Choose your Filters</span>
+            </div>
+            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+              <div class="dropdown">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                      Filter by Candidate Category
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/filter/cat/Gen">Gen</a>
+                    <a class="dropdown-item" href="/filter/cat/SC">SC</a>
+                    <a class="dropdown-item" href="/filter/cat/ST">ST</a>
+                  </div>
+              </div>
+              <div class="dropdown">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                      Filter by Turnout
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/filter/turnout/85_">>85%</a>
+                    <a class="dropdown-item" href="/filter/turnout/70_85">70-85%</a>
+                    <a class="dropdown-item" href="/filter/turnout/50_70">50-70%</a>
+                    <a class="dropdown-item" href="/filter/turnout/30_50">30-50%</a>
+                    <a class="dropdown-item" href="/filter/turnout/_30"><30%</a>
+                  </div>
+              </div>
+            </div><!--/.nav-collapse -->
+          </div>
+      </div>
+    </div>
+    <!--div class="col-md-8"-->
+      {% block graph %}{% endblock %}
+    <!--/div-->
+  <!--/div-->
+    
+{% endblock filters %}
