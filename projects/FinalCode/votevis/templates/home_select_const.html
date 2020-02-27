@@ -1,0 +1,49 @@
+{% extends "home_select_state.html" %}
+{% block select_const %}
+      <style>
+    .btn-primary
+   
+  {
+   
+  background-color: Teal;
+   
+  color:#FFF;
+   
+  border-color: #2F3E48;
+   
+  }
+  </style>
+      <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                {% if const_nm %}
+                  {{const_nm}}
+                {% else %}
+                  Select Constituency
+                {% endif %}
+                
+            </button>
+            <div class="dropdown-menu">
+                {% for const in consts %}
+                  <a class="dropdown-item" href="/const/{{st_name}}/{{const[0]}}"> {{ const[0] }} </a>
+                {% endfor %}
+            </div>
+      </div>
+    
+    {% if data %}
+      <div class="row">
+        <div class="col-md-4">
+          <h2 style="color:Teal; font-size: 125%"><br> Top Five Parties for {{election_yr}} &nbsp;&nbsp;&nbsp;</h2>
+          {{data | safe}}
+        </div>
+        <div class="col-md-8">
+          <h2 style="color:Teal; font-size: 135%"><br> {{num_const}} Constituencies &nbsp;&nbsp;&nbsp;</h2>
+          <h2 style="color:Teal; font-size: 135%"><br> {{num_parties}} Contesting Parties &nbsp;&nbsp;&nbsp;</h2>
+          <h2 style="color:Teal; font-size: 135%"><br> {{num_cands}} Contesting Candidates &nbsp;&nbsp;&nbsp;</h2>
+          <h2 style="color:Teal; font-size: 135%"><br> {{num_electors}} Electors &nbsp;&nbsp;&nbsp;</h2>
+          <h2 style="color:Teal; font-size: 135%"><br> {{total_turnout}}% Turnout &nbsp;&nbsp;&nbsp;<br></h2>
+          <h2>&nbsp;</h2>
+        </div>
+      </div>
+    {% endif %}
+    {% block const_res %}{% endblock %}
+{% endblock select_const %}

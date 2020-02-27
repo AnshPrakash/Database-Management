@@ -1,0 +1,103 @@
+{% extends "home_layout.html" %}
+{% block filters %}
+  <style>
+    .btn-primary
+   
+  {
+   
+  background-color: Teal;
+   
+  color:#FFF;
+   
+  border-color: #2F3E48;
+   
+  }
+  </style>
+  <div class="row">
+  <h1 class="title" style="color:Teal; font-size: 150%";><br>Select Filter</h1>
+  </div>
+  <form action="" method="post" name="filters">
+  <div class="row">
+    <p><b>By Turnout Percent  &nbsp;&nbsp;&nbsp;</b></p>
+    <input type="checkbox" id="id_85_" name="filters" value="85_100">
+    <label for="id_85_">>85% &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_70_85" name="filters" value="70_85">
+    <label for="id_70_85">70-85% &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_50_70" name="filters" value="50_70">
+    <label for="id_50_70">50-70% &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_30_50" name="filters" value="30_50">
+    <label for="id_30_50">30-50% &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_30" name="filters" value="0_30">
+    <label for="id_30"><30% &nbsp;&nbsp;&nbsp;</label>
+  </div>
+  <div class="row">
+    <p><b>By Category  &nbsp;&nbsp;&nbsp;</b></p>
+    <input type="checkbox" id="id_gen" name="filters" value="GEN">
+    <label for="id_gen">Gen &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_sc" name="filters" value="SC">
+    <label for="id_sc">SC &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_st" name="filters" value="ST">
+    <label for="id_st">ST &nbsp;&nbsp;&nbsp;<label>
+  </div>
+  <!--
+  <div class="row">
+    <p><b>By Gender Ratio  &nbsp;&nbsp;&nbsp;</b></p>
+    <input type="checkbox" id="id_1_" name="filters" value="1.0_2.0">
+    <label for="id_1_">>1.0 &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_9_1" name="filters" value="0.9_1.0">
+    <label for="id_9_1">0.9-1.0 &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_9" name="filters" value="0_0.9">
+    <label for="id_9"><0.9 &nbsp;&nbsp;&nbsp;<label>
+  </div>
+  -->
+  <div class="row">
+    <p><b>By Margin of Victory  &nbsp;&nbsp;&nbsp;</b></p>
+    <input type="checkbox" id="id_0_5000" name="filters" value="0_5000">
+    <label for="id_0_5000"><5000 &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_5000_30000" name="filters" value="5000_30000">
+    <label for="id_5000_30000">5000-30000 &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_30000_150000" name="filters" value="30000_150000">
+    <label for="id_30000_150000">30000-150000 &nbsp;&nbsp;&nbsp;<label>
+    <input type="checkbox" id="id_150000_300000" name="filters" value="150000_300000">
+    <label for="id_150000_300000">150000-300000 &nbsp;&nbsp;&nbsp;<label>
+    <input type="checkbox" id="id_300000_1000000" name="filters" value="300000_1000000">
+    <label for="id_300000_1000000">>300000 &nbsp;&nbsp;&nbsp;<label>
+  </div>
+  <div class="row">
+    <p><b>By Total Electors  &nbsp;&nbsp;&nbsp;</b></p>
+    <input type="checkbox" id="id_0_1000000" name="filters" value="0_1000000">
+    <label for="id_0_1000000"><1000000 &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_1000000_1500000" name="filters" value="1000000_1500000">
+    <label for="id_1000000_1500000">1000000-1500000 &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_1500000_2000000" name="filters" value="1500000_2000000">
+    <label for="id_1500000_2000000">1500000-2000000 &nbsp;&nbsp;&nbsp;<label>
+    <input type="checkbox" id="id_2000000_4000000" name="filters" value="2000000_4000000">
+    <label for="id_2000000_4000000">>2000000 &nbsp;&nbsp;&nbsp;<label>
+  </div>
+  <!--
+  <div class="row">
+    <p><b>By Number of Criminal Cases on Winner&nbsp;&nbsp;&nbsp;</b></p>
+    <input type="checkbox" id="id_-1_0" name="filters" value="-1_0">
+    <label for="id_-1_0">0 &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_1_3" name="filters" value="1_3">
+    <label for="id_1_3">1-3 &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_3_40" name="filters" value="3_40">
+    <label for="id_3_40">>3 &nbsp;&nbsp;&nbsp;<label>
+  </div>
+  <div class="row">
+    <p><b>By Gender of Winner  &nbsp;&nbsp;&nbsp;</b></p>
+    <input type="checkbox" id="id_0" name="filters" value="0">
+    <label for="id_0">Male &nbsp;&nbsp;&nbsp;</label>
+    <input type="checkbox" id="id_1" name="filters" value="1">
+    <label for="id_1">Female &nbsp;&nbsp;&nbsp;<br><label>
+  </div>
+  -->
+  <div class="row">  
+    <div class="field is-grouped">
+        <div class="control">
+          <button class="btn btn-primary btn-lg">Apply Filters</button>
+        </div>
+    </div>
+  </div>
+  </form>
+{% endblock filters %}

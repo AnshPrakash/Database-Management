@@ -1,0 +1,38 @@
+{% extends "home_layout.html" %}
+{% block select_state %}
+  <style>
+    .btn-primary
+   
+  {
+   
+  background-color: Teal;
+   
+  color:#FFF;
+   
+  border-color: #2F3E48;
+   
+  }
+  </style>
+  <div class="row">
+        <div class="col-md-4">
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                {% if st_name %}
+                  {{st_name}}
+                {% else %}
+                  Select State
+                {% endif %}
+            </button>
+            <div class="dropdown-menu">
+                {% for state in states %}
+                  <a class="dropdown-item" href="/state/{{state[0]}}"> {{ state[0] }} </a>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          {% block select_const %}{% endblock %}
+        </div>
+  </div>
+
+{% endblock select_state %}

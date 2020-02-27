@@ -1,0 +1,99 @@
+{% extends "home_layout.html" %}
+{% block choose_opt %}
+  <style>
+    .btn-primary
+   
+  {
+   
+  background-color: Teal;
+   
+  color:#FFF;
+   
+  border-color: #2F3E48;
+   
+  }
+  </style>
+  <div class="row">
+        <div class="col-md-4">
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                {{election_yr}}
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{url_for('elec_summary', election_yr='ge_2014')}}">  GE 2014  </a>
+                <a class="dropdown-item" href="{{url_for('elec_summary', election_yr='ge_2009')}}">  GE 2009  </a>
+                <a class="dropdown-item" href="{{url_for('elec_summary', election_yr='ge_2004')}}">  GE 2004  </a>
+                <a class="dropdown-item" href="{{url_for('elec_summary', election_yr='ge_1999')}}">  GE 1999  </a>
+                <a class="dropdown-item" href="{{url_for('elec_summary', election_yr='ge_1998')}}">  GE 1998  </a>
+            </div>
+          </div>
+          
+        </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4">
+      <span class="visible-xs navbar-brand"><a href="\state" style="color:Teal; font-size: 125%">Get results of your state/constituency</a></span>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-md-4">
+      <span class="visible-xs navbar-brand"><a href="\request" style="color:Teal; font-size: 125%">Choose multiple filters</a></span>
+    </div>
+  </div>  
+  <div class="row">
+    <div class="col-md-4">
+      <span class="visible-xs navbar-brand"><a href="\vil_ac\state" style="color:Teal; font-size: 125%">Map village to constituency</a></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <span class="visible-xs navbar-brand"><a href="\cand\all" style="color:Teal; font-size: 125%">Candidate info statistics</a></span>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col-md-4">
+      <span class="visible-xs navbar-brand"><a href="\elec_comparison" style="color:Teal; font-size: 125%">Comparison among elections</a></span>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <h2 style="color:Teal; font-size: 125%"><br> Top Five Parties for General Election {{election_yr[3:]}} &nbsp;&nbsp;&nbsp;</h2>
+      {{data | safe}}
+    </div>
+    <div class="col-md-6">
+    
+      <h2 style="color:Teal; font-size: 135%"><br> {{num_const}} Constituencies &nbsp;&nbsp;&nbsp;</h2>
+      <h2 style="color:Teal; font-size: 135%"><br> {{num_parties}} Contesting Parties &nbsp;&nbsp;&nbsp;</h2>
+      <h2 style="color:Teal; font-size: 135%"><br> {{num_cands}} Contesting Candidates &nbsp;&nbsp;&nbsp;</h2>
+      <h2 style="color:Teal; font-size: 135%"><br> {{num_electors}} Electors &nbsp;&nbsp;&nbsp;</h2>
+      <h2 style="color:Teal; font-size: 135%"><br> {{total_turnout}}% Turnout &nbsp;&nbsp;&nbsp;<br></h2>
+      <h2>&nbsp;</h2>
+    </div>
+  </div>
+  
+    <div id="respond">
+
+  <h3>Leave a Comment</h3>
+
+  <form method="post" name="commentform">
+
+    <label for="comment" class="required">Post your comment</label>
+    <textarea name="comment" id="comment" rows="3" tabindex="4" cols="50" required="required"></textarea>
+
+    <!-- comment_post_ID value hard-coded as 1 -->
+    <input type="hidden" name="comment_post_ID "value="1" id="comment_post_ID" />
+    <p><br></p>
+    <input name="submit" type="submit" value="Submit comment" />
+    <p><br></p>
+  </form>
+  
+  <h3>All Comments ({{length}})</h3>
+  {% for i in range(length) %}
+      <h2><br>{{coms.iloc[i,0]}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{coms.iloc[i,1]}}</h2>
+      <p>{{coms.iloc[i,2]}}</p>
+  {% endfor %}
+  
+</div>
+{% endblock choose_opt %}

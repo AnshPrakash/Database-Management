@@ -1,0 +1,229 @@
+{% extends "home_layout.html" %}
+{% block elec_compare %}
+
+  <body>
+    <meta charset="UTF-8">
+
+	<div style="width: 50%">
+		<canvas id="myChart" height="450" width="600"></canvas>
+	</div>
+
+	<div style="width: 50%">
+		<canvas id="myChart2" height="450" width="600"></canvas>
+	</div>
+	<div style="width: 50%">
+		<canvas id="myChart4" height="450" width="600"></canvas>
+	</div>
+	<div style="width: 50%">
+		<canvas id="myChart3" height="450" width="600"></canvas>
+	</div>
+    <script type="text/javascript">
+      // Global parameters:
+      // do not resize the chart canvas when its container does (keep at 600x400px)
+      Chart.defaults.global.responsive = false;
+
+      // define the chart data
+	  var ctx = document.getElementById("myChart").getContext("2d");
+	  var ctx2 = document.getElementById("myChart2").getContext("2d");
+	  var ctx3 = document.getElementById("myChart3").getContext("2d");
+	  var ctx4 = document.getElementById("myChart4").getContext("2d");
+      var chartData = {
+        labels : [{% for item in labels %}
+                   "{{item}}",
+                  {% endfor %}],
+        datasets : [{
+            label: '{{ legend }}',
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+			pointStyle: 'triangle',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "rgba(75,192,192,1)",
+            pointBorderWidth: 1,
+            pointHoverRadius: 10,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(75,192,192,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data : [{% for item in values %}
+                      {{item}},
+                    {% endfor %}],
+			//data : values,
+            spanGaps: false
+        }]
+      }
+      var chartData2 = {
+        labels : [{% for item in labels %}
+                   "{{item}}",
+                  {% endfor %}],
+        datasets : [{
+            label: 'No. of Electors',
+            fill: true,
+			backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+			borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            fillColor : "rgba(75,192,192,0.5)",
+            strokeColor : "rgba(75,192,192,0.8)",
+            highlightFill: "rgba(75,192,192,0.75)",
+            highlightStroke: "rgba(75,192,1921)",
+            data : [{% for item in elec %}
+                      {{item}},
+                    {% endfor %}],
+			//data : values,
+            //spanGaps: false
+        }]
+      }
+	  var chartData3 = {
+        labels : [{% for item in labels %}
+                   "{{item}}",
+                  {% endfor %}],
+        datasets : [{
+            label: 'Polling Percentage',
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+			pointStyle: 'triangle',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "rgba(75,192,192,1)",
+            pointBorderWidth: 1,
+            pointHoverRadius: 10,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(75,192,192,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data : [{% for item in turnout %}
+                      {{item}},
+                    {% endfor %}],
+			//data : values,
+            spanGaps: false
+        }]
+      }
+	  var chartData4 = {
+        labels : [{% for item in labels %}
+                   "{{item}}",
+                  {% endfor %}],
+        datasets : [{
+            label: 'No. of Candidates',
+            fill: true,
+			backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+			borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            fillColor : "rgba(75,192,192,0.5)",
+            strokeColor : "rgba(75,192,192,0.8)",
+            highlightFill: "rgba(75,192,192,0.75)",
+            highlightStroke: "rgba(75,192,1921)",
+            data : [{% for item in cont %}
+                      {{item}},
+                    {% endfor %}],
+			//data : values,
+            //spanGaps: false
+        }]
+      }
+	 var options1 = {
+			  legend: {
+					labels: {
+						// This more specific font property overrides the global property
+						fontSize: 22
+					}
+				},
+			/*title: {
+				display: true,
+				text: 'Votes Margin'
+			},*/
+			tooltips: {
+			  enabled: true,
+			  mode: 'single',
+				
+			  callbacks: {
+				label: function(tooltipItems, data) {
+						 //return ('Winner_Party' + dat1[tooltipItems.index] + '\n'+'Boom');
+						 var multistringText = ['Party With Highest Vote Share ' + dat1[tooltipItems.index]];
+
+						multistringText.push('Runner Up Party In Terms of Vote Share ' + dat2[tooltipItems.index]);
+						multistringText.push('Votes_Margin ' + tooltipItems.yLabel);
+						return multistringText;
+					   }
+			  }
+			},
+		  }
+	var options2 =  {
+			  legend: {
+				labels: {
+					// This more specific font property overrides the global property
+					fontSize: 22
+				}
+			},
+			tooltips: {
+			  enabled: true,
+			  mode: 'single',
+			},
+		  }
+	  //var dat1 = [1,2,3,4,5];
+	var dat2 = {{data2|safe}};
+	var dat1 = {{data1|safe}};
+	  
+		var myChart = new Chart(ctx, {
+		  type: 'line',
+		  data: chartData,
+		  options: options1
+		});
+		var myChart3 = new Chart(ctx3, {
+		  type: 'line',
+		  data: chartData3,
+		  options: options2
+		});
+		var myChart3 = new Chart(ctx4, {
+		  type: 'bar',
+		  data: chartData4,
+		  options: options2
+		});
+		
+		var myChart2 = new Chart(ctx2, {
+		  type: 'bar',
+		  data: chartData2,
+		  options: options2
+		});
+
+
+    </script>
+
+  </body>
+
+
+{% endblock elec_compare %}

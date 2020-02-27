@@ -1,0 +1,65 @@
+{% extends "home_layout.html" %}
+{% block graph %}
+  <style>
+    .btn-primary
+   
+  {
+   
+  background-color: Teal;
+   
+  color:#FFF;
+   
+  border-color: #2F3E48;
+   
+  }
+  </style>
+  <div class="row">
+        <div class="col-md-4">
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                {{election_yr}}
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{url_for('filtered_res', sel_fil=sel_fil, election_yr='ge_2014')}}">  GE 2014  </a>
+                <a class="dropdown-item" href="{{url_for('filtered_res', sel_fil=sel_fil, election_yr='ge_2009')}}">  GE 2009  </a>
+                <a class="dropdown-item" href="{{url_for('filtered_res', sel_fil=sel_fil, election_yr='ge_2004')}}">  GE 2004  </a>
+                <a class="dropdown-item" href="{{url_for('filtered_res', sel_fil=sel_fil, election_yr='ge_1999')}}">  GE 1999  </a>
+                <a class="dropdown-item" href="{{url_for('filtered_res', sel_fil=sel_fil, election_yr='ge_1998')}}">  GE 1998  </a>
+                
+            </div>
+          </div>
+          
+        </div>
+  </div>
+  
+  <div class="row">
+    <!--div class="col-md-8"-->
+      <!--img src= "{{img_src}}"  alt="Party-wise Distribution" style="width:500px;height:600px;"-->
+      <h1 style="color:Teal; font-size: 125%"><br>Seat Share</h1>
+      <img src="{{ url_for('send_file', filename=img_src) }}" alt="Party-wise Distribution">
+      
+    <!--/div-->
+  </div>
+  <div class="row">
+      <h1 style="color:Teal; font-size: 125%"><br>Vote Share</h1>
+      <img src="{{ url_for('send_file', filename=img_src1) }}" alt="Party-wise Distribution">
+  </div>
+  
+  <div class="panel panel-primary accordion"> <!-- Panel (collapasable) -->
+    <div class="panel-heading"> <!-- Panel head -->
+        <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion" href="#collapseOne">
+            Click to view/hide detailed results
+        </a>           
+    </div> <!-- END Panel head -->
+
+    <div id="collapseOne" class="panel-collapse collapse"> <!-- Collapsable section -->
+      <div class="panel-body"> <!-- Panel body -->
+        <h1 style="color:Teal; font-size: 150%";>Detailed Results</h1>
+        {{data | safe}}
+      </div> <!-- END Panel body -->
+    </div> <!-- END Collapse section -->
+
+    </div> 
+
+
+{% endblock graph %}
