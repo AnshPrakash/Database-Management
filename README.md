@@ -8,9 +8,9 @@ service postgres start
 service postgresql status  
   
 -- Run SQL script  
-psql -U username -f filename.sql  
+```psql -U username -f filename.sql  ```
   
-#Start  
+## Start  
 sudo -u postgres psql  
 or   
 su postgres # enter postgres password  
@@ -18,23 +18,23 @@ psql
 \l #tell the databases in postgres server  
 \du #list users in postgres  
   
-#change password for user postgres  
+## change password for user postgres  
 ALTER USER postgres WITH PASSWORD 'postgres';  
   
-create new User  
+## create new User  
 CREATE USER user_name WITH PASSWORD 'password';  
 ALTER USER user_name WITH SUPERUSER; # add privlages  
 DROP USER user_name; # delete existing user  
   
-#Clear screen  
+## Clear screen  
 Cltr+l  
   
-#timing on by   
+## timing on by   
 \timing  
 more on timing:  
 https://dba.stackexchange.com/questions/3148/how-can-i-time-sql-queries-using-psql  
   
-#some links for changing user access  
+## some links for changing user access  
 https://tableplus.com/blog/2018/04/postgresql-how-to-grant-access-to-users.html  
   
 #Good Link to start psql  
